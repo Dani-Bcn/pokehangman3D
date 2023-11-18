@@ -17,5 +17,9 @@ Canvas{
     width: 100vw;
     height: 100vh;
     overflow: hidden;
-    background-color: wheat;
+    background-color: rgb(0, 0, 0);
+}
+
+a{
+    cursor: pointer;
 }
