@@ -11,7 +11,7 @@ export function PokeBall_red(props) {
     <group
       onPointerOver={() => setStateHover(true)}
       onPointerOut={() => setStateHover(false)}
-      onClick={() => navigate("/about")}
+      onClick={() => navigate("/game")}
     >
       <group {...props} dispose={null} scale={[0.01, 0.01, 0.01]}>
         <mesh
