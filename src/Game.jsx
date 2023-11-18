@@ -3,6 +3,7 @@ import { motion as m, AnimatePresence, animate } from "framer-motion";
 import "./App.css";
 
 const Game = () => {
+
   let limitCalls = 1200;
   const endPointApi = `https://pokeapi.co/api/v2/pokemon?limit=${limitCalls}`;
   const [dataResults, setDataResults] = useState();
@@ -17,6 +18,7 @@ const Game = () => {
     for (let count = 65; count < 91; count++) {
       setAlphabet((prev) => [...prev, String.fromCharCode(count)]);
     }
+
     fetch(endPointApi)
       .then((resp) => resp.json())
       .then((resp) => setDataResults(resp.results));
@@ -39,7 +41,7 @@ const Game = () => {
   const handleclick = (letter) => {
     setCount(count + 1);
     count > randomName.length ? setWinner(false) : null;
-    console.log(winner);
+
     randomName.map((e, i) => {
       if (letter.target.innerHTML === e) {
         nameSecret[i] = e;
@@ -50,11 +52,17 @@ const Game = () => {
       }, 250);
     });
   };
-  console.log(randomName);
 
   return (
-    <main className="fixed t-0 r-0  w-screen h-screen flex flex-col justify-center items-center">
+    <m.main className="fixed t-0 r-0  w-screen h-screen flex flex-col justify-center items-center"
+    
+        exit={{
+            opacity:[1,0]
+        }}
+    
+    >
       <h1>Game</h1>
+
       <section className="flex justify-center items-center gap-5 w-screen h-20">
         {nameSecret
           ? nameSecret.map((e, i) => {
@@ -66,6 +74,7 @@ const Game = () => {
             })
           : null}
       </section>
+
       <section className="flex flex-wrap justify-center p-2 gap-2">
         {alphabet.map((e, i) => {
           return (
@@ -79,12 +88,13 @@ const Game = () => {
           );
         })}
       </section>
+
       {winner === null ? null : winner === true ? (
         <h2 className="text-green-400 text-5xl">You win</h2>
       ) : (
         <h2 className="text-red-400 text-5xl">You lose</h2>
       )}
-    </main>
+    </m.main>
   );
 };
 
