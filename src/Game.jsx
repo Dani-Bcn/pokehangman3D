@@ -7,32 +7,83 @@ const Game = () => {
   const endPointApi = `https://pokeapi.co/api/v2/pokemon?limit=${limitCalls}`;
   const [dataResults, setDataResults] = useState();
   const [randomName, setRandomName] = useState([]);
+  const [alphabet, setAlphabet] = useState([]);
+  const [nameSecret, setNameSecret] = useState([]);
+  const [winner, setWinner] = useState(null);
+  const [count, setCount] = useState(0);
   let random = Math.floor(Math.random() * 1200);
-  console.log(random);
 
   useEffect(() => {
+    for (let count = 65; count < 91; count++) {
+      setAlphabet((prev) => [...prev, String.fromCharCode(count)]);
+    }
     fetch(endPointApi)
       .then((resp) => resp.json())
       .then((resp) => setDataResults(resp.results));
   }, []);
 
   useEffect(() => {
-    dataResults ? setRandomName(dataResults[random].name.split("")) : null;
+    dataResults
+      ? setRandomName(dataResults[random].name.toUpperCase().split(""))
+      : null;
   }, [dataResults]);
 
+  useEffect(() => {
+    if (randomName) {
+      randomName.map(() => {
+        setNameSecret((prev) => [...prev, "_"]);
+      });
+    }
+  }, [randomName]);
+
+  const handleclick = (letter) => {
+    setCount(count + 1);
+    count > randomName.length ? setWinner(false) : null;
+    console.log(winner);
+    randomName.map((e, i) => {
+      if (letter.target.innerHTML === e) {
+        nameSecret[i] = e;
+      }
+      setNameSecret([...nameSecret]);
+      setTimeout(() => {
+        nameSecret.includes("_") ? null : setWinner(true);
+      }, 250);
+    });
+  };
   console.log(randomName);
+
   return (
-    <main>
+    <main className="fixed t-0 r-0  w-screen h-screen flex flex-col justify-center items-center">
       <h1>Game</h1>
-      <section className="flex justify-center items-center w-screen h-20 bg-red-500">
-        {randomName
-          ? randomName.map((e, i) => {
-              return(
-              <p className="flex" key={i}>{e}</p>
-              )
+      <section className="flex justify-center items-center gap-5 w-screen h-20">
+        {nameSecret
+          ? nameSecret.map((e, i) => {
+              return (
+                <h3 key={i} className="text-red-200">
+                  {e}
+                </h3>
+              );
             })
           : null}
       </section>
+      <section className="flex flex-wrap justify-center p-2 gap-2">
+        {alphabet.map((e, i) => {
+          return (
+            <h2
+              onClick={(e) => handleclick(e)}
+              className="cursor-pointer text-3xl"
+              key={i}
+            >
+              {e}
+            </h2>
+          );
+        })}
+      </section>
+      {winner === null ? null : winner === true ? (
+        <h2 className="text-green-400 text-5xl">You win</h2>
+      ) : (
+        <h2 className="text-red-400 text-5xl">You lose</h2>
+      )}
     </main>
   );
 };
