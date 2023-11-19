@@ -14,7 +14,7 @@ export function TitlePokemon(props) {
     animate={{
       x:[-25,-4],
       transition:{
-        delay:1,
+        delay:0.3,
         type:"spring",
         mass:2,
         damping:10,
