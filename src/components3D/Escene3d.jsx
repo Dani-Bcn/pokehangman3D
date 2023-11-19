@@ -31,8 +31,9 @@ export default function Escene3d() {
           
         makeDefault position={[0, 0, 50]} fov={10} />
         <Environment preset="city" />
+
         <ScrollControls pages={0}>
-          <Scroll>
+          <Scroll html>
             <Charizard />
             <PokeBall_red />
             <PokeBall_blue />
