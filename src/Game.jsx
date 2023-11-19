@@ -54,7 +54,7 @@ const Game = () => {
   };
 
   return (
-    <m.main className="fixed t-0 r-0  w-screen h-screen flex flex-col justify-center items-center"
+    <m.main className=" t-0 r-0  w-screen h-screen flex flex-col justify-center items-center"
     
         exit={{
             opacity:[1,0]
@@ -62,7 +62,6 @@ const Game = () => {
     
     >
       <h1>Game</h1>
-
       <section className="flex justify-center items-center gap-5 w-screen h-20">
         {nameSecret
           ? nameSecret.map((e, i) => {

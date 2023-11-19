@@ -1,6 +1,7 @@
 import React, { useRef, useState } from "react";
 import { useGLTF, useCursor } from "@react-three/drei";
 import { useNavigate } from "react-router-dom";
+import { motion as m } from "framer-motion-3d";
 
 export function PokeBall_red(props) {
   const [stateHover, setStateHover] = useState(false);
@@ -8,12 +9,31 @@ export function PokeBall_red(props) {
   useCursor(stateHover);
   const { nodes, materials } = useGLTF("/pokeBall_red.glb");
   return (
-    <group
+    <m.group
+
+   
+    animate={{
+      scale:[0,1],
+      x:[-5,0],
+      transition:{
+        delay:1.5,
+        duration:1.2,
+        type:"tween",
+        stiffness:50
+      }
+
+    }}
       onPointerOver={() => setStateHover(true)}
       onPointerOut={() => setStateHover(false)}
       onClick={() => navigate("/game")}
     >
-      <group {...props} dispose={null} scale={[0.01, 0.01, 0.01]}>
+      <group
+        {...props}
+        dispose={null}
+        scale={[0.01, 0.01, 0.01]}
+        position={[-8, 2, 0]}
+        rotation={[0, 0.5, 0]}
+      >
         <mesh
           castShadow
           receiveShadow
@@ -21,6 +41,7 @@ export function PokeBall_red(props) {
           material={nodes.Cylinder.material}
           position={[0, 0, 86.871]}
         />
+
         <mesh
           castShadow
           receiveShadow
@@ -40,7 +61,7 @@ export function PokeBall_red(props) {
           material={materials.Mat}
         />
       </group>
-    </group>
+    </m.group>
   );
 }
 

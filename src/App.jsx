@@ -1,7 +1,6 @@
 import "./App.css";
 import React from "react";
 import Escene3d from "./components3D/Escene3d";
-import About from "./About";
 import Game from "./Game";
 
 import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
@@ -16,9 +15,8 @@ function App() {
       <AnimatePresence>
         <Navbar/>
         <Routes location={location} key={location.pathname}>
-          <Route path="/" element={<Escene3d/>}/>     
-          <Route path="/about" element={<About/>}/>  
-          <Route path="/game" element={<Game/>}/>
+          <Route path="/" element={<Escene3d/>}/>    
+        
         </Routes>
       </AnimatePresence>
     </m.main>
