@@ -20,6 +20,7 @@ import Rules from "../Rules";
 export default function Escene3d() {
   return (
     <m.main>
+      <section className="absolute t-0 w-screen h-screen  z-50" ></section>
       <Canvas>
         <OrbitControls
           enablePan={false}
@@ -33,7 +34,7 @@ export default function Escene3d() {
         <Environment preset="city" />
 
         <ScrollControls pages={0}>
-          <Scroll html>
+          <Scroll>
             <Charizard />
             <PokeBall_red />
             <PokeBall_blue />
