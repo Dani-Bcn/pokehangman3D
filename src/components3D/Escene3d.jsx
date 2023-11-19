@@ -20,7 +20,7 @@ import Rules from "../Rules";
 export default function Escene3d() {
   return (
     <m.main>
-      <section className="absolute t-0 w-screen h-screen  z-50" ></section>
+      <section className="absolute t-0 w-screen h-screen bg-red-400 z-10" ></section>
       <Canvas>
         <OrbitControls
           enablePan={false}
