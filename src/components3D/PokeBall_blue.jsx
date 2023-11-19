@@ -9,14 +9,18 @@ export function PokeBall_blue(props) {
   useCursor(stateHover);
   return (
     <m.group
+    initial={{
+      scale:[0]
+      
+    }}
     animate={{
       x:[-5,0],
       scale:[0,1],
       transition:{
         delay:2,
-        duration:0.5,
-        type:"tween",
-        stiffness:250
+        type:"spring",
+        mass:1,
+        damping:10,
       }
 
     }}

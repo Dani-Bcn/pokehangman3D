@@ -11,15 +11,19 @@ export function PokeBall_red(props) {
   return (
     <m.group
 
-   
+    initial={{
+      scale:[0]
+      
+    }}
     animate={{
       scale:[0,1],
       x:[-5,0],
       transition:{
         delay:1.5,
         duration:1.2,
-        type:"tween",
-        stiffness:50
+        type:"spring",
+        mass:2,
+        damping:10,
       }
 
     }}
