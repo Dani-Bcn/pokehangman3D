@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState,useLayoutEffect } from "react";
 import { useGLTF, useCursor } from "@react-three/drei";
 import { motion as m } from "framer-motion-3d";
 
@@ -6,13 +6,22 @@ export function Charizard(props) {
   const { nodes, materials } = useGLTF("/charizard.glb");
   const [repeat, setRepeat] = useState(0);
   const [state, setState] = useState(false);
+  const [scale,setScale] = useState(3)
   useCursor(state);
+  useLayoutEffect(()=>{
+    
+   window.addEventListener("resize",(e)=>{
+    window.screen.width > 400 ? setScale(3) : setScale(2);
+      console.log(window.screen.width)
+   } )
+ 
+  },[window.screen])
 
   return (
     <m.group
       {...props}
       dispose={null}
-      scale={3}
+      scale={scale}
       position={[0, -2.8, 10]}
       rotation={[-0.07, 0, 0]}
     >
