@@ -4,62 +4,69 @@ import { motion as m } from "framer-motion-3d";
 
 export function Charizard(props) {
   const { nodes, materials } = useGLTF("/charizard.glb");
-  const [repeat, setRepeat] = useState(0);
-  const [state, setState] = useState(false);
-  const [scale,setScale] = useState(3)
-  useCursor(state);
-  useLayoutEffect(()=>{
-    
-   window.addEventListener("resize",(e)=>{
-    window.screen.width > 400 ? setScale(3) : setScale(2);
-      console.log(window.screen.width)
-   } )
- 
-  },[window.screen])
-
+     
   return (
     <m.group
       {...props}
       dispose={null}
-      scale={scale}
-      position={[0, -2.8, 10]}
-      rotation={[-0.07, 0, 0]}
+      scale={2}
+      position={[5,-2.5, 10]}
+      rotation={[-0, -0.3, 0]}
     >
       <m.group
         rotation={[Math.PI / 2, 0, 0]}
         initial={{
-          y:2.5
+          y:5
         }}
 
         animate={{
           rotateX: [2.8, 1.5],
           rotateZ: [-0.3, 0.1, 0],
-          y: [2.5, 0],
+          y: [5, 0],
           transition: {
-            delay: 1,
-            duration: 3,
-            type: "tween",
-            stiffness: 50,
-          },
+            delay: 0.8,
+            type:"spring",
+            mass:5,
+            stiffness:500,
+            damping:100,
+            restDelta:0.001
+          }
         }}
       >
-        <m.skinnedMesh
+        <m.mesh
+  animate={{
+    rotateX: [-1.57, -1.5, -1.57],
+            scaleX:[1.02,1.05,1.02],
+            scaleY:[1.05,1.02,1.05],
+            transition: {
+              repeat:"Infinity",
+              type:"just",
+              duration:5,
+              mass:5,
+              stiffness:50,
+              damping:100,
+              restDelta:0.001
+            }
+  }}
+
+        rotation={[-1.5,0,0]}
           geometry={nodes.pm0006_00_00_body_mesh_shape_body_a.geometry}
           material={materials.body_a}
           skeleton={nodes.pm0006_00_00_body_mesh_shape_body_a.skeleton}
         />
-        <m.mesh
-
-     
+        <m.mesh     
           animate={{
-            rotateX: [-1.57, -1.4, -1.57],
+            rotateX: [-1.57, -1.5, -1.57],
+            scaleY:[1.03,1.01,1.03],
             transition: {
-              delay: 1,
-              duration: 0.5,
-              repeat: 5,
-              type: "tween",
-              stiffness: 50,
-            },
+              repeat:"Infinity",
+              type:"just",
+              duration:5,
+              mass:5,
+              stiffness:50,
+              damping:100,
+              restDelta:0.001
+            }
           }}
           position={[0, 0, 0]}
           rotation={[-1.575, 0, 0]}
@@ -67,29 +74,30 @@ export function Charizard(props) {
           material={materials.body_b}
           skeleton={nodes.pm0006_00_00_body_mesh_shape_body_b.skeleton}
         />
-        <skinnedMesh
+      {/*  <skinnedMesh
           geometry={nodes.pm0006_00_00_eye_mesh_shape_l_eye.geometry}
           material={materials.l_eye}
           skeleton={nodes.pm0006_00_00_eye_mesh_shape_l_eye.skeleton}
         />
-        <skinnedMesh
+         <skinnedMesh        
           geometry={nodes.pm0006_00_00_eye_mesh_shape_r_eye.geometry}
-          material={materials.r_eye}
+          material-color={"red"}
           skeleton={nodes.pm0006_00_00_eye_mesh_shape_r_eye.skeleton}
         />
-
+ */}
         <skinnedMesh
           rotation={[0.5, 0, 0]}
           geometry={nodes.pm0006_00_00_fire_mesh_shape_fire.geometry}
           material={materials.fire}
           skeleton={nodes.pm0006_00_00_fire_mesh_shape_fire.skeleton}
-        />
+        /> 
 
         <skinnedMesh
+        
           geometry={nodes.pm0006_00_00_tongue_mesh_shape_body_b.geometry}
           material={materials.body_b}
           skeleton={nodes.pm0006_00_00_tongue_mesh_shape_body_b.skeleton}
-        />
+        /> 
 
         <primitive object={nodes.pm0006_00_00} />
       </m.group>

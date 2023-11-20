@@ -10,22 +10,20 @@ export function PokeBall_red(props) {
   const { nodes, materials } = useGLTF("/pokeBall_red.glb");
   return (
     <m.group
-
     initial={{
-      scale:[0]
-      
-    }}
+      scale:[0]      
+    }} 
     animate={{
       scale:[0,1],
       x:[-5,0],
-      transition:{
-        delay:1.5,
-        duration:1.2,
+      transition: {
+        delay: 0.8,
         type:"spring",
-        mass:2,
-        damping:10,
+        mass:5,
+        stiffness:500,
+        damping:40,
+        restDelta:0.001
       }
-
     }}
       onPointerOver={() => setStateHover(true)}
       onPointerOut={() => setStateHover(false)}

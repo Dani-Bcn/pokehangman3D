@@ -5,12 +5,12 @@ export default function NavbarResposive() {
   const navigate = useNavigate();
   return (
     <main>
-      <section>
+      <section>  
         <ul>
           <li onClick={() => navigate("/")}>Home</li>
-          <li onClick={() => navigate("/game")}>Game</li>
+        
         </ul>
-      </section>
+      </section> 
       <section>
         <ul>
           <a href="https://github.com/Dani-Bcn" target="_blank" rel="noopener noreferrer">
@@ -22,7 +22,7 @@ export default function NavbarResposive() {
           <a href="https://www.domestika.org/es/nneodani/activity" target="_blank" rel="noopener noreferrer">
             <li>Domestika</li>
           </a>
-        </ul>
+        </ul> 
       </section>
     </main>
   );

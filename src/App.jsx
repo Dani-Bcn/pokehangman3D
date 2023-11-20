@@ -1,26 +1,23 @@
 import "./App.css";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Escene3d from "./components3D/Escene3d";
-import Game from "./Game";
-
-import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
-import { motion as m, AnimatePresence } from "framer-motion";
 import Navbar from "./Navbar";
 
 function App() {
-  const location = useLocation();
+  const [response, setRespose] = useState(false);
+/*   useEffect(() => {
+    console.log(window.screen.width);
+    window.screen.width > 400 ? setRespose(true) : false;
+  }, []); */
 
-  return (
-    <m.main className="sticky flex flex-col">      
-      <AnimatePresence>
-        <Navbar/>
-        <Routes location={location} key={location.pathname}>
-          <Route path="/" element={<Escene3d/>}/>    
-        
-        </Routes>
-      </AnimatePresence>
-    </m.main>
-  );
+  return ( 
+        <main> 
+            <Navbar />             
+            <Escene3d />   
+        </main>
+      ) 
+   
+  
 }
 
 export default App;

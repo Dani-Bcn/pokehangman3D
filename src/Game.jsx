@@ -3,7 +3,6 @@ import { motion as m, AnimatePresence, animate } from "framer-motion";
 import "./App.css";
 
 const Game = () => {
-
   let limitCalls = 1200;
   const endPointApi = `https://pokeapi.co/api/v2/pokemon?limit=${limitCalls}`;
   const [dataResults, setDataResults] = useState();
@@ -52,14 +51,12 @@ const Game = () => {
       }, 250);
     });
   };
-
   return (
-    <m.main className=" t-0 r-0  w-screen h-screen flex flex-col justify-center items-center"
-    
-        exit={{
-            opacity:[1,0]
-        }}
-    
+    <m.main
+      className=" w-screen h-screen flex flex-col justify-center bg-red-800  items-center"
+      exit={{
+        opacity: [1, 0],
+      }}
     >
       <h1>Game</h1>
       <section className="flex justify-center items-center gap-5 w-screen h-20">
@@ -73,13 +70,12 @@ const Game = () => {
             })
           : null}
       </section>
-
-      <section className="flex flex-wrap justify-center p-2 gap-2">
+      <section className="flex flex-wrap overflow-hidden justify-center p-2 gap-2">
         {alphabet.map((e, i) => {
           return (
             <h2
               onClick={(e) => handleclick(e)}
-              className="cursor-pointer text-3xl"
+              className=" overflow-hidden cursor-pointer text-3xl"
               key={i}
             >
               {e}
@@ -87,7 +83,6 @@ const Game = () => {
           );
         })}
       </section>
-
       {winner === null ? null : winner === true ? (
         <h2 className="text-green-400 text-5xl">You win</h2>
       ) : (

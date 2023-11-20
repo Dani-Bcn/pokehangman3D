@@ -2,24 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
-*{
-  
+*{  
     margin: 0;
     padding: 0;
 }
-
 html{
     color: wheat;
     background-color: black;
 }
-
-Canvas{
+Canvas{ 
     width: 100vw;
     height: 100vh;
     overflow: hidden;
     background-color: rgb(0, 0, 0);
 }
-
 a{
     cursor: pointer;
 }

@@ -12,15 +12,17 @@ export function PokeBall_blue(props) {
     initial={{
       scale:[0]
       
-    }}
+    }} 
     animate={{
       x:[-5,0],
-      scale:[0,0.7],
-      transition:{
-        delay:2,
+      scale:[0,0.9],
+      transition: {
+        delay: 1,
         type:"spring",
-        mass:1,
-        damping:10,
+        mass:5,
+        stiffness:500,
+        damping:50,
+        restDelta:0.001
       }
 
     }}
